@@ -9,8 +9,10 @@
                 <div class="col-md-12">
                     <b-table striped hover :items="personas" :fields="fields">
 
-
-
+                      <template v-slot:cell(action)="data">
+                            <b-button size="sm" variant="primary" :to="{name:'EditPersona',params:{idpersona:data.item.idpersona}}">Editar</b-button>
+                            <b-button size="sm" variant="danger">Eliminar</b-button>
+                      </template>
                     </b-table>
                 </div>
             </div>
@@ -21,15 +23,17 @@
 import axios from 'axios';
 export default {
     data (){
+        idpersona:''
         return{
+
             fields: [
                 {key: 'nombre' ,label:'nombre'},
                 {key: 'Apaterno', label: 'Paterno'},
-                {key: 'Amaterno', label: 'Materno'}
+                {key: 'Amaterno', label: 'Materno'},
+                {key:'action',label:''}
+
             ],
-            personas: [
-                
-            ]
+            personas: []
 
         }
     },
